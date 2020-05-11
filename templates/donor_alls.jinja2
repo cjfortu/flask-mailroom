@@ -1,0 +1,16 @@
+{% extends 'base.jinja2' %}
+
+{% block subtitle %}{% if donor %}Donations for {{  donor  }}{% else %}Search a donor, return all their donations{% endif %}{% endblock subtitle %}
+
+{% block content %}
+<form method="POST">
+    {% if error %}<p>{{ error }}</p>{% endif %}
+    <label for="name-input">Donorname:</label><input id="name-input" type="text" name="name"><br>
+    <input type="submit" value="search">
+</form>
+{% if donations %}<ul>
+    {% for donation in donations %}
+        <li>{{ donation }}</li>
+    {% endfor %}
+</ul>{% endif %}
+{% endblock content %}

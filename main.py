@@ -84,25 +84,25 @@ def new_donor():
         return render_template('new_donor.jinja2')
 
 
-@app.route('/donor_alls', methods=['GET', 'POST'])
+@app.route('/donor_all', methods=['GET', 'POST'])
 def donor_alls():
     """
     Search a donor and display all their donations.
     """
     if request.method == 'GET':
-        return render_template('donor_alls.jinja2')
+        return render_template('donor_all.jinja2')
 
     if request.method == 'POST':
         try:
             donor = Donor.get(Donor.name == request.form['name'])
         except Donor.DoesNotExist:
-            return render_template('donor_alls.jinja2', error='Donor does not exist.')
+            return render_template('donor_all.jinja2', error='Donor does not exist.')
         else:
             query = Donation.select().where(Donation.donor == donor)
             print('ok heres the query', query)
             donations = [donation.value for donation in query]
             print('ok heres the donations', donations)
-            return render_template('donor_alls.jinja2', donor=donor.name, donations=donations)
+            return render_template('donor_all.jinja2', donor=donor.name, donations=donations)
 
 
 if __name__ == "__main__":

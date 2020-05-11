@@ -85,7 +85,7 @@ def new_donor():
 
 
 @app.route('/donor_all', methods=['GET', 'POST'])
-def donor_alls():
+def donor_all():
     """
     Search a donor and display all their donations.
     """
